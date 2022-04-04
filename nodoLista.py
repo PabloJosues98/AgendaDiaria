@@ -1,5 +1,5 @@
 class NodoLista:
     def __init__(self,dato):
         self.siguiente=None
-        self.anterio=None
+        self.anterior=None
         self.dato=dato

@@ -92,7 +92,7 @@ def mostarEventos():
     global misEventos
     system("cls")
     misEventos.mostrarContenido()
-    opcion=input("Ingrese el numero para realizar la accion: ")
+    opcion=input("ingrese cualquier tecla para continuar: ")
 
 def eliminarEvento():
     while True:
@@ -101,15 +101,31 @@ def eliminarEvento():
         misEventos.mostrarContenido()
         try:
             numOpciones=misEventos.lenLista()
-            opcion=int(input("Ingrese el numero del evento que desea eliminar o ingrese "+str(numOpciones+1)+" para salir: "))
+            opcion=int(input("Ingrese el numero del evento que desea eliminar o ingrese ("+str(numOpciones+1)+") para salir: "))
             if opcion>0 and opcion<numOpciones+2:
                 if opcion==numOpciones+1:
                     break
-                misEventos.eliminar(opcion)
-                op=input("Evento eliminado correctamente, ingrese cualquier tecla para continuar: ")
+                misEventos.eliminar(opcion-1)
+                system("cls")
+                mostarEventos()
                 break
         except:
             print("valor no valido")
+
+def informacion():
+    system("cls")
+    print("-----        INFORMACION        -----\n")
+    print("Esta es una aplicacion para llevar el control de los eventos del dia, en el menu principal se muestra las opciones que se pueden realiza:\n")
+    print("Crear un evento: Te permite crear o agendar un evento, primero se selecciona el tipo de evento, luego una breve descripcion, seguido de su prioridad, por ultimo y opcional hora limite de la actividad (este programa no tiene un alarma, simplementen mostrara toda esa informacion de eventos en pantalla.)")
+    print("Mostar eventos: En este apartado se mostraran todos los eventos que se crearon anteriormente, y si no los hay te mostrar un mensaje.")
+    print("Eliminar un evento: Aqui puedes seleccionar el evento que hayas finalizado o desees eliminar de la lista.")
+    print("Informacion del programa y el desarrollador: es la seccion actual de la cual puedes salir presionando cualquier tecla.")
+    print("Terminar el programa: Permite que el programa se detenga por completo, Nota: al cerrarse se eliminara todos los datos guardados en la aplicacion.\n\n")
+    print("-----        INFORMACION DEL DESARROLLADOR       -----\n")
+    print("Nombre: Pablo Sosa")
+    print("Cursando: Cuarto semestre de Ingenieria en Ciencias y Sistemas en la Universidad de San Carlos de Guatemala")
+    print("Correo: pablojosues98@gmail.com\n")
+    op=input("Ingresa cualquier tecla para retornar la menu principal: ")
 
 def menu():
     while True:
@@ -118,7 +134,7 @@ def menu():
         print("1) Crear un evento")
         print("2) Mostar eventos")
         print("3) Eliminar un evento")
-        print("4) Informacion del programa y el desarrolador")
+        print("4) Informacion del programa y el desarrollador")
         print("5) Terminar el programa\n")
         try:
             opcion=int(input("Ingrese el numero para realizar la accion: "))
@@ -129,7 +145,7 @@ def menu():
             elif opcion==3:
                 eliminarEvento()
             elif opcion==4:
-                print("informacion")
+                informacion()
             elif opcion==5:
                 break
         except:

@@ -11,25 +11,30 @@ class Lista:
             self.primero=nuevoNodo
         else:
             self.ultimo.siguiente=nuevoNodo
-            nuevoNodo.anterio=self.ultimo
+            nuevoNodo.anterior=self.ultimo
         self.ultimo=nuevoNodo
 
     def eliminar(self,pos):
         tmp=NodoLista("")
+        tmp=self.primero
         cont=0
-        while cont<pos and tmp.siguiente!=None:
+        while cont<pos and tmp!=None:
             tmp=tmp.siguiente
             cont+=1
         if pos==cont:
-            if tmp.siguiente!=None and tmp.anterio!=None:
-                tmp.anterio.siguiente=tmp.siguiente
-                tmp.siguiente.anterior=tmp.anterio
+            if tmp.siguiente!=None and tmp.anterior!=None:
+                tmp.anterior.siguiente=tmp.siguiente
+                tmp.siguiente.anterio=tmp.anterior
             elif tmp.siguiente!=None:
                 self.primero=tmp.siguiente
                 tmp.siguiente.anterior=None
-            elif tmp.anterio!=None:
-                self.ultimo=tmp.anterio
-                tmp.anterio.siguiente=None
+            elif tmp.anterior!=None:
+                self.ultimo=tmp.anterior
+                tmp.anterior.siguiente=None
+            else:
+                self.primero=None
+                self.ultimo=None
+            tmp.dato=None
             tmp=None
 
     def lenLista(self):
